@@ -27,3 +27,6 @@ cd client
 npm install
 npm run dev
 ```
+
+### Deployment
+Backend app is deployed on Render and frontend app is deployed on Netlify.
