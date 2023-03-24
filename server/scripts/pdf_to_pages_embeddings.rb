@@ -10,6 +10,10 @@ Dotenv.load
 
 $openai_client = OpenAI::Client.new(access_token: ENV["OPENAI_API_KEY"])
 
+COMPLETIONS_MODEL = "text-davinci-003"
+MODEL_NAME = "curie"
+DOC_EMBEDDINGS_MODEL = "text-search-#{MODEL_NAME}-doc-001"
+
 $tokenizer = Tokenizers::Tokenizer.from_pretrained("gpt2")
 
 def count_tokens(text)
@@ -44,13 +48,18 @@ reader.pages.each do |page|
     i += 1
 end
 
+openai_rate_limit_per_minute = 60
+
 page_headers = ["title", "content", "token"]
 CSV.open("#{filename}.pages.csv", 'w') do |csv|
     csv << page_headers
     res.each_with_index do |row, i|
-        csv << row
+        if i < openai_rate_limit_per_minute
+            csv << row
+        end
     end
 end
+  
 
 def get_embedding(text, model)
     result=$openai_client.embeddings(parameters: {model:model, input:text})
@@ -61,11 +70,14 @@ def get_doc_embedding(text)
     return get_embedding(text, DOC_EMBEDDINGS_MODEL)
 end
 
+
 CSV.open("#{filename}.embeddings.csv", 'w') do |csv|
     csv<< ["title"] + (0..4095).to_a 
     reader.pages.each_with_index do |page, i|
         content = page.text.split.join(" ") 
-        doc_embeddings = get_doc_embedding(content)
-        csv << ["Page #{i+1}"] + doc_embeddings.map(&:to_s)
+        if page.text.length and i < openai_rate_limit_per_minute
+            doc_embeddings = get_doc_embedding(content)
+            csv << ["Page #{i+1}"] + doc_embeddings.map(&:to_s)
+        end
     end
 end
