@@ -11,12 +11,15 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_03_24_100656) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "questions", force: :cascade do |t|
-    t.string "question", limit: 140
-    t.string "context", default: ""
-    t.string "answer", limit: 1000, default: ""
+    t.text "question"
+    t.text "context", default: ""
+    t.text "answer", default: ""
     t.integer "ask_count", default: 1
-    t.string "audio_src_url", limit: 255, default: ""
+    t.text "audio_src_url", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
