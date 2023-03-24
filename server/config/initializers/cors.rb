@@ -13,4 +13,12 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
       headers: :any,
       methods: [:get, :post, :put, :patch, :delete, :options, :head]
   end
+
+  allow do
+    origins "https://a463-2405-201-d002-b13f-d82f-b943-dcb7-3136.in.ngrok.io"
+
+    resource "*",
+      headers: :any,
+      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  end
 end

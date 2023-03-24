@@ -18,7 +18,7 @@ rails db:migrate
 ```
 Start server:
 ```
-bin/rails server
+rails s
 ```
 
 Frontend:

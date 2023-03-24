@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   root "questions#index"
 
   post "/questions", to: "questions#create"
+
+  resources :resemble
+
+  post "/resemble/callback", to: "resemble#callback"
 end

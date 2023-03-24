@@ -171,27 +171,25 @@ class QuestionsController < ApplicationController
     document_embeddings = load_embeddings('book.pdf.embeddings.csv')
     answer, context = answer_query_with_context(@question, pages, document_embeddings)
 
-    # project_uuid = ENV["RESEMBLE_PROJECT_UUID"]
-    # voice_uuid = ENV["RESEMBLE_VOICE_UUID"]
-    # callback_uri = ENV["RESEMBLE_CALLBACK_URI"]
+    project_uuid = ENV["RESEMBLE_PROJECT_UUID"]
+    voice_uuid = ENV["RESEMBLE_VOICE_UUID"]
+    callback_uri = ENV["RESEMBLE_CALLBACK_URI"]
 
-    # response = Resemble::V2::Clip.create_async(
-    #   project_uuid,
-    #   voice_uuid,
-    #   callback_uri,
-    #   answer,
-    #   title: nil,
-    #   sample_rate: nil,
-    #   output_format: nil,
-    #   precision: nil,
-    #   include_timestamps: nil,
-    #   is_public: nil,
-    #   is_archived: nil,
-    #   # raw: nil
-    # )
-    # audio_src_url = response ? response['audio_src'] : nil
+    response = Resemble::V2::Clip.create_async(
+      project_uuid,
+      voice_uuid,
+      callback_uri,
+      answer,
+      title: @question,
+      sample_rate: nil,
+      output_format: nil,
+      precision: nil,
+      include_timestamps: nil,
+      is_public: nil,
+      is_archived: nil,
+    )
 
-    question = Question.new(question: @question, answer: answer, context: context, audio_src_url: audio_src_url)
+    question = Question.new(question: @question, answer: answer, context: context)
     question.save
 
     render json: { "question": question.question, "answer": answer, "audio_src_url": question.audio_src_url, "id": question.id }
