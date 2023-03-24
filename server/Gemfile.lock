@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    Ascii85 (1.1.0)
     actioncable (7.0.4.3)
       actionpack (= 7.0.4.3)
       activesupport (= 7.0.4.3)
@@ -66,6 +67,7 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    afm (0.2.2)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
@@ -73,9 +75,17 @@ GEM
     crass (1.0.6)
     date (3.3.3)
     debug (1.7.1)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.12.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    hashery (2.1.2)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     loofah (2.19.1)
@@ -87,10 +97,12 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.2)
+    matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.18.0)
     msgpack (1.6.1)
+    multi_xml (0.6.0)
     net-imap (0.3.4)
       date
       net-protocol
@@ -103,6 +115,13 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.14.2-x86_64-linux)
       racc (~> 1.4)
+    optparse (0.3.1)
+    pdf-reader (2.11.0)
+      Ascii85 (~> 1.0)
+      afm (~> 0.2.1)
+      hashery (~> 2.0)
+      ruby-rc4
+      ttfunk
     puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.6.2)
@@ -136,9 +155,15 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    resemble (1.2.0)
+    ruby-openai (3.6.0)
+      httparty (>= 0.18.1)
+    ruby-rc4 (0.1.5)
     sqlite3 (1.6.1-x86_64-linux)
     thor (1.2.1)
     timeout (0.3.2)
+    tokenizers (0.3.2-x86_64-linux)
+    ttfunk (1.7.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     websocket-driver (0.7.5)
@@ -152,9 +177,16 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   debug
+  dotenv-rails (~> 2.8)
+  matrix (~> 0.4.2)
+  optparse (~> 0.3.1)
+  pdf-reader (~> 2.11)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
+  resemble (~> 1.2)
+  ruby-openai (~> 3.6)
   sqlite3 (~> 1.4)
+  tokenizers (~> 0.3.2)
   tzinfo-data
 
 RUBY VERSION

@@ -46,3 +46,11 @@ group :development do
   # gem "spring"
 end
 
+
+gem "matrix", "~> 0.4.2"
+gem "optparse", "~> 0.3.1"
+gem "dotenv-rails", "~> 2.8"
+gem "tokenizers", "~> 0.3.2"
+gem "ruby-openai", "~> 3.6"
+gem "pdf-reader", "~> 2.11"
+gem "resemble", "~> 1.2"
