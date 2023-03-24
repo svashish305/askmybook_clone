@@ -53,5 +53,4 @@ gem "tokenizers", "~> 0.3.2"
 gem "ruby-openai", "~> 3.6"
 gem "pdf-reader", "~> 2.11"
 gem "resemble", "~> 1.2"
-
 gem "pg", "~> 1.4"
