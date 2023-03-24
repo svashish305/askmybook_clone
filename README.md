@@ -29,4 +29,4 @@ npm run dev
 ```
 
 ### Deployment
-Backend app is deployed on Render and frontend app is deployed on Netlify.
+Backend app is deployed on Render [here](https://askmybook-clone.onrender.com) and frontend app is deployed on Netlify [here](https://beautiful-pasca-f2e46b.netlify.app/).
