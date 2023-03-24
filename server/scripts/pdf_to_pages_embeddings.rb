@@ -61,7 +61,6 @@ def get_doc_embedding(text)
     return get_embedding(text, DOC_EMBEDDINGS_MODEL)
 end
 
-
 CSV.open("#{filename}.embeddings.csv", 'w') do |csv|
     csv<< ["title"] + (0..4095).to_a 
     reader.pages.each_with_index do |page, i|
